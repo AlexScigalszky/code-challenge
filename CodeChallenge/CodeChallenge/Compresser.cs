@@ -90,6 +90,49 @@ namespace CodeChallenge
             return result;
         }
 
+        /// <summary>
+        /// Compress a string replacing the duplicated chars by a number that specify how many duplicated chars are.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns>compressed input</returns>
+        /// <exception cref="Exception">Not alphabetic input</exception>
+        public static bool TryCompress(string input, out string ouput)
+        {
+            if (string.IsNullOrEmpty(input))
+            {
+                ouput = input;
+                return false;
+            }
+
+            if (!IsAlphabetic(input))
+            {
+                throw new Exception("Only Alphabetic characters are available");
+            }
+
+            string result = string.Empty;
+
+            char currentLetter = input.FirstOrDefault();
+            int counter = 0;
+
+            foreach (char item in input)
+            {
+                if (currentLetter == item)
+                {
+                    counter++;
+                }
+                else
+                {
+                    result = Concat(result, currentLetter, counter);
+                    counter = 1;
+                    currentLetter = item;
+                }
+            }
+
+            ouput = Concat(result, currentLetter, counter);
+
+            return true;
+        }
+
         private static string Concat(string result, char currentLetter, int counter)
         {
             result += currentLetter;
