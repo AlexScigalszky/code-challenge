@@ -31,12 +31,20 @@ namespace CodeChallenge
                 }
                 else
                 {
-                    result += $"{currentLetter}{counter}";
-                    counter = 0;
+                    result += currentLetter;
+                    if (counter > 1)
+                    {
+                        result += counter;
+                    }
+                    counter = 1;
                     currentLetter = item;
                 }
             }
-            result += $"{currentLetter}{counter}";
+            result += currentLetter;
+            if (counter > 1)
+            {
+                result += counter;
+            }
 
 
             return result;

@@ -126,6 +126,13 @@ namespace CodeChallenge.Tests
 
         [Theory]
         [InlineData("aa", "a2")]
+        [InlineData("aaa", "a3")]
+        [InlineData("aaab", "a3b")]
+        [InlineData("aaabb", "a3b2")]
+        [InlineData("aaabbc", "a3b2c")]
+        [InlineData("aaabcc", "a3bc2")]
+        [InlineData("uuueeeenzzzzz", "u3e4nz5")]
+        [InlineData("uuueeeennzzzzz", "u3e4n2z5")] 
         public void AlphabeticWithConsecutiveDuplicateLetters(string input, string output)
         {
             GivenAInput(input);
