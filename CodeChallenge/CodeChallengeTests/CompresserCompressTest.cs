@@ -2,11 +2,8 @@
 
 namespace CodeChallenge.Tests
 {
-    public class CompresserCompressTest
+    public class CompresserCompressTest : CompresserBaseTest
     {
-        private string _input;
-        private string _output;
-
         [Fact]
         public void Null()
         {
@@ -121,7 +118,7 @@ namespace CodeChallenge.Tests
         {
             GivenAInput(input);
             var act = WhenCompressAsync();
-            ThenThrowAnException(act);
+            ThenThrowAnException(act, "Only Alphabetic characters are available");
         }
 
         [Theory]
@@ -151,56 +148,14 @@ namespace CodeChallenge.Tests
             ThenTheResultIs(output);
         }
 
-        private void ThenTheResultIs(string output)
-        {
-            Assert.Equal(output, _output);
-        }
-
-        private void ThenThrowAnException(Action act)
-        {
-            Exception exception = Assert.Throws<Exception>(act);
-            Assert.Equal("Only Alphabetic characters are available", exception.Message);
-        }
-
         private Action WhenCompressAsync()
         {
             return () => _output = Compresser.Compress(_input); 
         }
 
-        private void ThenReturnAValue()
-        {
-            Assert.NotNull(_output);
-            Assert.NotEmpty(_output);
-        }
-
-        private void GivenAInput(string input)
-        {
-            _input = input;
-        }
-
-        private void ThenOuputIsEmptyString()
-        {
-            Assert.Empty(_output);
-        }
-
-        private void GivenAEmptyString()
-        {
-            _input = string.Empty;
-        }
-
-        private void ThenOuputIsNull()
-        {
-            Assert.Null(_output);
-        }
-
         private void WhenCompress()
         {
             _output = Compresser.Compress(_input);
-        }
-
-        private void GivenANullValue()
-        {
-            _input = null;
         }
     }
 }
