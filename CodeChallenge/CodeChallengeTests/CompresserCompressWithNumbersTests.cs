@@ -74,7 +74,25 @@ namespace CodeChallenge.Tests
         [InlineData("X")]
         [InlineData("Y")]
         [InlineData("Z")]
-        public void Alphabetic(string input)
+        [InlineData("A1")]
+        [InlineData("1A")]
+        [InlineData("A2B")]
+        [InlineData("2B3")]
+        [InlineData("1")]
+        [InlineData("2")]
+        [InlineData("3")]
+        [InlineData("4")]
+        [InlineData("5")]
+        [InlineData("6")]
+        [InlineData("7")]
+        [InlineData("8")]
+        [InlineData("9")]
+        [InlineData("0")]
+        [InlineData("a1")]
+        [InlineData("1a")]
+        [InlineData("a2b")]
+        [InlineData("2b3")]
+        public void Alphanumeric(string input)
         {
             GivenAInput(input);
             CompressWithNumbers();
@@ -97,24 +115,6 @@ namespace CodeChallenge.Tests
         [InlineData("=")]
         [InlineData("&")]
         [InlineData("%")]
-        [InlineData("A1")]
-        [InlineData("1A")]
-        [InlineData("A2B")]
-        [InlineData("2B3")]
-        [InlineData("1")]
-        [InlineData("2")]
-        [InlineData("3")]
-        [InlineData("4")]
-        [InlineData("5")]
-        [InlineData("6")]
-        [InlineData("7")]
-        [InlineData("8")]
-        [InlineData("9")]
-        [InlineData("0")]
-        [InlineData("a1")]
-        [InlineData("1a")]
-        [InlineData("a2b")]
-        [InlineData("2b3")]
         public void NonAlphabetic(string input)
         {
             GivenAInput(input);
