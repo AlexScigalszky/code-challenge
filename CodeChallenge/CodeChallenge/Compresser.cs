@@ -5,7 +5,7 @@
 
         public static string Compress(string input)
         {
-            return "";
+            return input;
         }
     }
 }
