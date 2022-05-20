@@ -124,6 +124,20 @@ namespace CodeChallenge.Tests
             ThenThrowAnException(act);
         }
 
+        [Theory]
+        [InlineData("aa", "a2")]
+        public void AlphanumericWithConsecutiveDuplicateLetters(string input, string output)
+        {
+            GivenAInput(input);
+            WhenCompress();
+            ThenTheResultIs(output);
+        }
+
+        private void ThenTheResultIs(string output)
+        {
+            Assert.Equal(output, _output);
+        }
+
         private void ThenThrowAnException(Action act)
         {
             Exception exception = Assert.Throws<Exception>(act);
