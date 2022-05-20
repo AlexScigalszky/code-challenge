@@ -62,7 +62,7 @@ namespace CodeChallenge
 
             if (!IsAlphanumeric(input))
             {
-                throw new Exception("Only Alphabetic characters are available");
+                throw new Exception("Only Alphanumeric characters are available");
             }
 
             string result = string.Empty;

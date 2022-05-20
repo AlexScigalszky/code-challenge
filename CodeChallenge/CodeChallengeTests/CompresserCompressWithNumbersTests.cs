@@ -115,11 +115,11 @@ namespace CodeChallenge.Tests
         [InlineData("=")]
         [InlineData("&")]
         [InlineData("%")]
-        public void NonAlphabetic(string input)
+        public void NonAlphanumeric(string input)
         {
             GivenAInput(input);
             var act = CompressWithNumbersAsync();
-            ThenThrowAnException(act, "Only Alphabetic characters are available");
+            ThenThrowAnException(act, "Only Alphanumeric characters are available");
         }
 
         [Theory]
