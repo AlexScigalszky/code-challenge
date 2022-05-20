@@ -140,6 +140,17 @@ namespace CodeChallenge.Tests
             ThenTheResultIs(output);
         }
 
+        [Theory]
+        [InlineData("ab", "ab")]
+        [InlineData("abc", "abc")]
+        [InlineData("askufdhsdiyhfvnel", "askufdhsdiyhfvnel")]
+        public void AlphabeticWithNoConsecutiveDuplicateLetters(string input, string output)
+        {
+            GivenAInput(input);
+            WhenCompress();
+            ThenTheResultIs(output);
+        }
+
         private void ThenTheResultIs(string output)
         {
             Assert.Equal(output, _output);
