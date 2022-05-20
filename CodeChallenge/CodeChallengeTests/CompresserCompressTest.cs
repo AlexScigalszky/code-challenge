@@ -101,6 +101,40 @@ namespace CodeChallenge.Tests
             ThenReturnAValue();
         }
 
+        [Theory]
+        [InlineData("_")]
+        [InlineData("?")]
+        [InlineData("$")]
+        [InlineData("!")]
+        [InlineData("@")]
+        [InlineData("\"")]
+        [InlineData("/")]
+        [InlineData("{")]
+        [InlineData("}")]
+        [InlineData("[")]
+        [InlineData("]")]
+        [InlineData("¿")]
+        [InlineData("=")]
+        [InlineData("&")]
+        [InlineData("%")]
+        public void NonAlphanumeric(string input)
+        {
+            GivenAInput(input);
+            var act = WhenCompressAsync();
+            ThenThrowAnException(act);
+        }
+
+        private void ThenThrowAnException(Action act)
+        {
+            Exception exception = Assert.Throws<Exception>(act);
+            Assert.Equal("Only Alphabetic characters are available", exception.Message);
+        }
+
+        private Action WhenCompressAsync()
+        {
+            return () => _output = Compresser.Compress(_input); 
+        }
+
         private void ThenReturnAValue()
         {
             Assert.NotNull(_output);
