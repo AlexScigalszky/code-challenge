@@ -23,6 +23,95 @@ namespace CodeChallenge.Tests
             ThenOuputIsEmptyString();
         }
 
+        [Theory]
+        [InlineData("a")]
+        [InlineData("b")]
+        [InlineData("c")]
+        [InlineData("d")]
+        [InlineData("e")]
+        [InlineData("f")]
+        [InlineData("g")]
+        [InlineData("h")]
+        [InlineData("i")]
+        [InlineData("j")]
+        [InlineData("k")]
+        [InlineData("l")]
+        [InlineData("m")]
+        [InlineData("n")]
+        [InlineData("o")]
+        [InlineData("p")]
+        [InlineData("q")]
+        [InlineData("r")]
+        [InlineData("s")]
+        [InlineData("t")]
+        [InlineData("u")]
+        [InlineData("v")]
+        [InlineData("w")]
+        [InlineData("x")]
+        [InlineData("y")]
+        [InlineData("z")]
+        [InlineData("1")]
+        [InlineData("2")]
+        [InlineData("3")]
+        [InlineData("4")]
+        [InlineData("5")]
+        [InlineData("6")]
+        [InlineData("7")]
+        [InlineData("8")]
+        [InlineData("9")]
+        [InlineData("0")]
+        [InlineData("a1")]
+        [InlineData("1a")]
+        [InlineData("a2b")]
+        [InlineData("2b3")]
+        [InlineData("A")]
+        [InlineData("B")]
+        [InlineData("C")]
+        [InlineData("D")]
+        [InlineData("E")]
+        [InlineData("F")]
+        [InlineData("G")]
+        [InlineData("H")]
+        [InlineData("I")]
+        [InlineData("J")]
+        [InlineData("K")]
+        [InlineData("L")]
+        [InlineData("M")]
+        [InlineData("N")]
+        [InlineData("O")]
+        [InlineData("P")]
+        [InlineData("Q")]
+        [InlineData("R")]
+        [InlineData("S")]
+        [InlineData("T")]
+        [InlineData("U")]
+        [InlineData("V")]
+        [InlineData("W")]
+        [InlineData("X")]
+        [InlineData("Y")]
+        [InlineData("Z")]
+        [InlineData("A1")]
+        [InlineData("1A")]
+        [InlineData("A2B")]
+        [InlineData("2B3")]
+        public void Alphanumeric(string input)
+        {
+            GivenAInput(input);
+            WhenCompress();
+            ThenReturnAValue();
+        }
+
+        private void ThenReturnAValue()
+        {
+            Assert.NotNull(_output);
+            Assert.NotEmpty(_output);
+        }
+
+        private void GivenAInput(string input)
+        {
+            _input = input;
+        }
+
         private void ThenOuputIsEmptyString()
         {
             Assert.Empty(_output);
