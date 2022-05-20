@@ -2,17 +2,35 @@
 
 namespace CodeChallenge.Tests
 {
-    public class CompresserTests
+    public class CompresserCompressTest
     {
         private string _input;
         private string _output;
 
         [Fact]
-        public void CompressTest()
+        public void Null()
         {
             GivenANullValue();
             WhenCompress();
             ThenOuputIsNull();
+        }
+
+        [Fact]
+        public void Empty()
+        {
+            GivenAEmptyString();
+            WhenCompress();
+            ThenOuputIsEmptyString();
+        }
+
+        private void ThenOuputIsEmptyString()
+        {
+            Assert.Empty(_output);
+        }
+
+        private void GivenAEmptyString()
+        {
+            _input = string.Empty;
         }
 
         private void ThenOuputIsNull()
