@@ -18,7 +18,49 @@ namespace CodeChallenge
                 return input;
             }
 
-            if (!IsValid(input))
+            if (!IsAlphabetic(input))
+            {
+                throw new Exception("Only Alphabetic characters are available");
+            }
+
+            string result = string.Empty;
+
+            char currentLetter = input.FirstOrDefault();
+            int counter = 0;
+
+            foreach (char item in input)
+            {
+                if (currentLetter == item)
+                {
+                    counter++;
+                }
+                else
+                {
+                    result = Concat(result, currentLetter, counter);
+                    counter = 1;
+                    currentLetter = item;
+                }
+            }
+
+            result = Concat(result, currentLetter, counter);
+
+            return result;
+        }
+
+        /// <summary>
+        /// Compress a string replacing the duplicated chars by a number that specify how many duplicated chars are.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns>compressed input</returns>
+        /// <exception cref="Exception">Not alphanumeric input</exception>
+        public static string CompressWithNumbers(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+            {
+                return input;
+            }
+
+            if (!IsAlphanumeric(input))
             {
                 throw new Exception("Only Alphabetic characters are available");
             }
@@ -58,9 +100,15 @@ namespace CodeChallenge
             return result;
         }
 
-        private static bool IsValid(string input)
+        private static bool IsAlphabetic(string input)
         {
             return Regex.IsMatch(input, @"^[a-zA-Z]+$");
+        }
+
+        private static bool IsAlphanumeric(string input)
+        {
+            return IsAlphabetic(input);
+            //return Regex.IsMatch(input, @"^[a-zA-Z0-9]+$");
         }
     }
 }
