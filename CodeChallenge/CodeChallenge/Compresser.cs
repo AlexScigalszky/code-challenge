@@ -49,6 +49,7 @@ namespace CodeChallenge
 
         /// <summary>
         /// Compress a string replacing the duplicated chars by a number that specify how many duplicated chars are.
+        /// Numbers are not compressed
         /// </summary>
         /// <param name="input"></param>
         /// <returns>compressed input</returns>
@@ -72,7 +73,7 @@ namespace CodeChallenge
 
             foreach (char item in input)
             {
-                if (currentLetter == item)
+                if (currentLetter == item && !char.IsDigit(item))
                 {
                     counter++;
                 }
