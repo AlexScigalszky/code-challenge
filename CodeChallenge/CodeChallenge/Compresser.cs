@@ -1,4 +1,6 @@
-﻿namespace CodeChallenge
+﻿using System.Text.RegularExpressions;
+
+namespace CodeChallenge
 {
     public class Compresser
     {
@@ -9,9 +11,9 @@
             {
                 return input;
             }
-
-            var isOnlyAlphanumeric = input.Any(x => char.IsLetterOrDigit(x));
-            if (!isOnlyAlphanumeric)
+            
+            var isOnlyAlphabetic = Regex.IsMatch(input, @"^[a-zA-Z]+$");
+            if (!isOnlyAlphabetic)
             {
                 throw new Exception("Only Alphabetic characters are available");
             }
@@ -20,7 +22,7 @@
 
             char currentLetter = input.FirstOrDefault();
             int counter = 0;
-            
+
             foreach (char item in input)
             {
                 if (currentLetter == item)
