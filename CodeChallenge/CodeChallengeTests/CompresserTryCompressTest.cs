@@ -10,16 +10,18 @@ namespace CodeChallenge.Tests
         public void Null()
         {
             GivenANullValue();
-            WhenTryCompress();
+            WhenTryCompressIsCall();
             ThenOuputIsNull();
+            ThenReturn(false);
         }
 
         [Fact]
         public void Empty()
         {
             GivenAEmptyString();
-            WhenTryCompress();
+            WhenTryCompressIsCall();
             ThenOuputIsEmptyString();
+            ThenReturn(false);
         }
 
         [Theory]
@@ -78,8 +80,9 @@ namespace CodeChallenge.Tests
         public void Alphabetic(string input)
         {
             GivenAInput(input);
-            WhenTryCompress();
+            WhenTryCompressIsCall();
             ThenReturnAValue();
+            ThenReturn(true);
         }
 
         [Theory]
@@ -119,8 +122,8 @@ namespace CodeChallenge.Tests
         public void NonAlphabetic(string input)
         {
             GivenAInput(input);
-            var act = WhenCompressAsync();
-            ThenThrowAnException(act, "Only Alphabetic characters are available");
+            WhenTryCompressIsCall();
+            ThenReturn(false);
         }
 
         [Theory]
@@ -135,8 +138,9 @@ namespace CodeChallenge.Tests
         public void AlphabeticWithConsecutiveDuplicateLetters(string input, string output)
         {
             GivenAInput(input);
-            WhenTryCompress();
+            WhenTryCompressIsCall();
             ThenTheResultIs(output);
+            ThenReturn(true);
         }
 
         [Theory]
@@ -146,18 +150,19 @@ namespace CodeChallenge.Tests
         public void AlphabeticWithNoConsecutiveDuplicateLetters(string input, string output)
         {
             GivenAInput(input);
-            WhenTryCompress();
+            WhenTryCompressIsCall();
             ThenTheResultIs(output);
+            ThenReturn(true);
         }
 
-        private Action WhenCompressAsync()
-        {
-            return () => _result = Compresser.TryCompress(_input, out _output); 
-        }
-
-        private void WhenTryCompress()
+        private void WhenTryCompressIsCall()
         {
             _result = Compresser.TryCompress(_input, out _output);
+        }
+
+        private void ThenReturn(bool returnExpected)
+        {
+            Assert.Equal(returnExpected, _result);
         }
     }
 }

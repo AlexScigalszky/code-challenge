@@ -96,7 +96,7 @@ namespace CodeChallenge
         /// <param name="input"></param>
         /// <returns>compressed input</returns>
         /// <exception cref="Exception">Not alphabetic input</exception>
-        public static bool TryCompress(string input, out string ouput)
+        public static bool TryCompress(string input, out string? ouput)
         {
             if (string.IsNullOrEmpty(input))
             {
@@ -106,7 +106,8 @@ namespace CodeChallenge
 
             if (!IsAlphabetic(input))
             {
-                throw new Exception("Only Alphabetic characters are available");
+                ouput = null;
+                return false;
             }
 
             string result = string.Empty;
