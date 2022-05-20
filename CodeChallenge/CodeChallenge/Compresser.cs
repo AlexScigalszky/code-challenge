@@ -23,28 +23,9 @@ namespace CodeChallenge
                 throw new Exception("Only Alphabetic characters are available");
             }
 
-            string result = string.Empty;
+            var stillCount = (char item, char currentLetter) => currentLetter == item;
 
-            char currentLetter = input.FirstOrDefault();
-            int counter = 0;
-
-            foreach (char item in input)
-            {
-                if (currentLetter == item)
-                {
-                    counter++;
-                }
-                else
-                {
-                    result = Concat(result, currentLetter, counter);
-                    counter = 1;
-                    currentLetter = item;
-                }
-            }
-
-            result = Concat(result, currentLetter, counter);
-
-            return result;
+            return ProcessTheInput(input, stillCount);
         }
 
         /// <summary>
@@ -66,14 +47,47 @@ namespace CodeChallenge
                 throw new Exception("Only Alphanumeric characters are available");
             }
 
-            string result = string.Empty;
 
+            var stillCount = (char item, char currentLetter) => currentLetter == item && !char.IsDigit(item);
+
+            return ProcessTheInput(input, stillCount);
+        }
+
+        /// <summary>
+        /// Compress a string replacing the duplicated chars by a number that specify how many duplicated chars are.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns>compressed input</returns>
+        /// <exception cref="Exception">Not alphabetic input</exception>
+        public static bool TryCompress(string input, out string? output)
+        {
+            if (string.IsNullOrEmpty(input))
+            {
+                output = input;
+                return false;
+            }
+
+            try
+            {
+                output = Compress(input);
+                return true;
+            }
+            catch
+            {
+                output = null;
+                return false;
+            }
+        }
+
+        private static string ProcessTheInput(string input, Func<char, char, bool> stillCount)
+        {
+            string result = string.Empty;
             char currentLetter = input.FirstOrDefault();
             int counter = 0;
 
             foreach (char item in input)
             {
-                if (currentLetter == item && !char.IsDigit(item))
+                if (stillCount(currentLetter, item))
                 {
                     counter++;
                 }
@@ -86,52 +100,7 @@ namespace CodeChallenge
             }
 
             result = Concat(result, currentLetter, counter);
-
             return result;
-        }
-
-        /// <summary>
-        /// Compress a string replacing the duplicated chars by a number that specify how many duplicated chars are.
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns>compressed input</returns>
-        /// <exception cref="Exception">Not alphabetic input</exception>
-        public static bool TryCompress(string input, out string? ouput)
-        {
-            if (string.IsNullOrEmpty(input))
-            {
-                ouput = input;
-                return false;
-            }
-
-            if (!IsAlphabetic(input))
-            {
-                ouput = null;
-                return false;
-            }
-
-            string result = string.Empty;
-
-            char currentLetter = input.FirstOrDefault();
-            int counter = 0;
-
-            foreach (char item in input)
-            {
-                if (currentLetter == item)
-                {
-                    counter++;
-                }
-                else
-                {
-                    result = Concat(result, currentLetter, counter);
-                    counter = 1;
-                    currentLetter = item;
-                }
-            }
-
-            ouput = Concat(result, currentLetter, counter);
-
-            return true;
         }
 
         private static string Concat(string result, char currentLetter, int counter)
