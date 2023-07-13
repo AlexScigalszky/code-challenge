@@ -8,3 +8,22 @@ However, if the compression of a given letter would not shorten the output strin
 Bonus #1: Design the method in such a way that the input string may contain numbers. If the input string does contain numbers, ensure that the input is compressed in an unambiguous way (a way in which the output string can be uncompressed back into the original input string). Would an output of ab434 mean the original string was ab434 or ab43333 or abbbb3333 or ab4444444444444444444444444444444444?
 
 Bonus #2: Can the caller of the method know if the input string was compressed or if the input string was simply returned as-is without the caller of the method having to perform a calculation of its own?
+
+
+
+  <p align="center"> 
+  <a href="https://cafecito.app/palabrasaleatorias">
+    <img src="https://cdn.cafecito.app/imgs/buttons/button_1.svg" alt="cafecito icon">
+  </a>
+</p>
+
+<h3 align="center"> 
+  <a href="https://www.buymeacoffee.com/alexscigalszky">
+    Buy me a Book
+  </a>
+</h3>
+<h3 align="center"> 
+  <a href="https://ko-fi.com/Y8Y7BUT9N">
+    <img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="ko.fi icon">
+  </a>
+</h3>
